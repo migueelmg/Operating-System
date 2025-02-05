@@ -14,7 +14,6 @@ void bootingSystem(std::string username) {
     std::cout << "3\n";
     std::cout << "2\n";
     std::cout << "1\n";
-    std::cout << "hi\n";
 
 }
 
