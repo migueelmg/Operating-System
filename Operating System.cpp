@@ -10,8 +10,15 @@ int main()
     cout << "Enter a Username and Password: " << endl;
     cin >> username;
     cin >> password;
-    cout << authenticateUser(username, password) << endl;
-    bootingSystem(username);
+    if (authenticateUser(username, password) == "Login successful!") {
+        cout << authenticateUser(username, password) << endl;
+        bootingSystem(username);
+    }
+    else {
+        cout << authenticateUser(username, password) << endl;
+    }
+ 
+    
     return 0;
 }
 
