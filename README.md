@@ -1,4 +1,4 @@
-CSCE 4326 Operating Systems/n
+CSCE 4326 Operating Systems
 
 Operating System Simulation
 Team Members: Roberto Esquivel, Miguel Miranda
