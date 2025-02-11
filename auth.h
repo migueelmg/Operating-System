@@ -7,7 +7,9 @@ void authenticateUser() {
 	string username;
 	string password;
 	cout << "Enter username and password" << endl;
+	cout << "Username:" << endl;
 	cin >> username;
+	cout << "Password: " << endl;
 	cin >> password;
 
 	if (username == "admin" and password == "password123") {
