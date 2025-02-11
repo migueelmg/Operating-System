@@ -3,12 +3,17 @@
 #include <string>
 using namespace std;
 
-string authenticateUser(string username, string password) {
+void authenticateUser() {
+	string username;
+	string password;
+	cout << "Enter username and password" << endl;
+	cin >> username;
+	cin >> password;
+
 	if (username == "admin" and password == "password123") {
-		return "Login successful!";
+		cout << "Login successful!" << endl;
 	}
 	else {
-		return "Login failed!";
+		cout << "Login failed!" << endl;
 	}
 }
-

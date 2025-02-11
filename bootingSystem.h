@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
+#include "auth.h"
 
 
 
-void bootingSystem(std::string username) {
-    std::cout << "Hello " << username << "!\n";
+void bootingSystem() {
     std::cout << "Updating and verifying services...\n";
     std::cout << "10\n";
     std::cout << "9\n";
@@ -17,5 +17,8 @@ void bootingSystem(std::string username) {
     std::cout << "2\n";
     std::cout << "1\n";
     std::cout << "System Booted." << endl;
+    authenticateUser();
+
+
 
 }
