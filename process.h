@@ -7,7 +7,7 @@ public:
 	int pid;
 	float arrival_time;
 	float burst_time;
-	bool priority;
+	int priority;
 	string state;
 	float remaining_time;
 	float waiting_time;
@@ -15,7 +15,7 @@ public:
 	int memory_required;
 	bool io_operations;
 
-	Process(int processPID, bool processPriority, string stateOfProcess, bool io, int size) {
+	Process(int processPID, int processPriority, string stateOfProcess, bool io, int size) {
 		pid = processPID;
 		priority = processPriority;
 		state = stateOfProcess;
