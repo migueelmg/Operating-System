@@ -6,10 +6,13 @@
 int main()
 {
     bootingSystem();
+
+    //user decides whether to start processes, or to shut down the system
     string input;
-    cout << "To start initiating processes, enter 'start'. To shut down system, enter 'shut down'" << endl;
+    cout << "To start initiating processes, enter 'start'. To shut down system, enter 'stop'" << endl;
     cin >> input;
 
+    //if user chooses to start, five processes will be initialized and their attributes will be printed
     if (input == "start") {
         Process process1(0,1,"READY",true,3);
         Process process2(1, 1, "READY", true, 4);
@@ -23,7 +26,8 @@ int main()
         process4.printAttributes();
         process5.printAttributes();
     }
-    else if (input == "shut down") {
+    //otherwise, system will shut down
+    else if (input == "stop") {
         cout << "System shutting down..." << endl;
     }
 
