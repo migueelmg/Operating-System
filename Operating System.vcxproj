@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="auth.h" />
     <ClInclude Include="bootingSystem.h" />
+    <ClInclude Include="createProcess.h" />
     <ClInclude Include="process.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

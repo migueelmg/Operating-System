@@ -26,5 +26,11 @@
     <ClInclude Include="bootingSystem.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="createProcess.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

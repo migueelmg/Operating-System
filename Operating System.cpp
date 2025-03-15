@@ -2,6 +2,7 @@
 #include <string>
 #include "bootingSystem.h"
 #include "process.h"
+#include "createProcess.h"
 
 int main()
 {
@@ -14,17 +15,15 @@ int main()
 
     //if user chooses to start, five processes will be initialized and their attributes will be printed
     if (input == "start") {
-        Process process1(0,1,"READY",true,3);
-        Process process2(1, 1, "READY", true, 4);
-        Process process3(2, 1, "READY", true, 2);
-        Process process4(3, 1, "READY", true, 5);
-        Process process5(4, 1, "READY", true, 1);
+        int countOfProcesses;
+        cout << "How many processes are you creating?" << endl;
+        cin >> countOfProcesses;
 
-        process1.printAttributes();
-        process2.printAttributes();
-        process3.printAttributes();
-        process4.printAttributes();
-        process5.printAttributes();
+        //creates countOfProcesses processes
+        for (int i = 0; i < countOfProcesses; i++) {
+            createProcess();
+        }
+
     }
     //otherwise, system will shut down
     else if (input == "stop") {

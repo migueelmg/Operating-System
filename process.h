@@ -6,30 +6,22 @@ class Process {
 
 public:
 	int pid;
-	float arrival_time;
-	float burst_time;
+	int arrival_time;
+	int burst_time;
 	int priority;
 	string state;
-	float remaining_time;
-	float waiting_time;
-	float turnaround_time;
+	int remaining_time;
+	int waiting_time;
+	int turnaround_time;
 	int memory_required;
-	bool io_operations;
-
-	//constructor for basic process
-	Process() {
-		pid = 1;
-		priority = 1;
-		state = "READY";
-	}
+	int io_operations;
 
 	//constructor for when user or system specifies attributes
-	Process(int processPID, int processPriority, string stateOfProcess, bool io, int size) {
-		pid = processPID;
-		priority = processPriority;
-		state = stateOfProcess;
-		io_operations = io;
-		memory_required = size;
+	Process(int pid, int priority, int arrival_time, int burst_time) {
+		this->pid = pid;
+		this->priority = priority;
+		this->arrival_time = arrival_time;
+		this->burst_time = burst_time;
 	}
 
 	void updateState(Process process, string newState) {
@@ -61,7 +53,7 @@ public:
 		this->pid = pid;
 	}
 
-	float getArrivalTime() {
+	int getArrivalTime() {
 		return arrival_time;
 	}
 
@@ -69,7 +61,7 @@ public:
 		this->arrival_time = arrival_time;
 	}
 
-	float getBurstTime() {
+	int getBurstTime() {
 		return burst_time;
 	}
 
@@ -85,7 +77,7 @@ public:
 		this->priority = priority;
 	}
 
-	float getRemainingTime() {
+	int getRemainingTime() {
 		return remaining_time;
 	}
 
@@ -93,7 +85,7 @@ public:
 		this->remaining_time = remaining_time;
 	}
 
-	float getWaitingTime() {
+	int getWaitingTime() {
 		return waiting_time;
 	}
 
@@ -101,7 +93,7 @@ public:
 		this->waiting_time = waiting_time;
 	}
 
-	float getTurnAroundTime() {
+	int getTurnAroundTime() {
 		return turnaround_time;
 	}
 
@@ -117,7 +109,7 @@ public:
 		this->memory_required = memory_required;
 	}
 
-	bool getIO_Operations() {
+	int getIO_Operations() {
 		return io_operations;
 	}
 
