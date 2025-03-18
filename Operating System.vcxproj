@@ -128,12 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Operating System.cpp" />
+    <ClCompile Include="process.cpp" />
+    <ClCompile Include="scheduling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h" />
     <ClInclude Include="bootingSystem.h" />
     <ClInclude Include="createProcess.h" />
     <ClInclude Include="process.h" />
+    <ClInclude Include="scheduling.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,6 +18,12 @@
     <ClCompile Include="Operating System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scheduling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h">
@@ -31,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="createProcess.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

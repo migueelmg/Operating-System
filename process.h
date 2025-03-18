@@ -1,120 +1,74 @@
 #pragma once
 #include <string>
 #include <iostream>
+using namespace std;
 
 class Process {
 
 public:
-	int pid;
-	int arrival_time;
-	int burst_time;
-	int priority;
-	string state;
-	int remaining_time;
-	int waiting_time;
-	int turnaround_time;
-	int memory_required;
-	int io_operations;
+    int pid;
+    int arrival_time;
+    int burst_time;
+    int priority;
+    string state;
+    int remaining_time;
+    int waiting_time;
+    int turnaround_time;
+    int io_operations;
+    int completion_time;  // Added completion time
 
-	//constructor for when user or system specifies attributes
-	Process(int pid, int priority, int arrival_time, int burst_time) {
-		this->pid = pid;
-		this->priority = priority;
-		this->arrival_time = arrival_time;
-		this->burst_time = burst_time;
-	}
+    // Constructor for when user or system specifies attributes
+    Process(int pid, int priority, int arrival_time, int burst_time) {
+        this->pid = pid;
+        this->priority = priority;
+        this->arrival_time = arrival_time;
+        this->burst_time = burst_time;
+        this->remaining_time = burst_time; // Initialize remaining time to burst time
+        this->state = "not started";       // Default state
+        this->waiting_time = 0;
+        this->turnaround_time = 0;
+        this->io_operations = 0;
+        this->completion_time = 0;  // Initialize completion time
+    }
 
-	void updateState(Process process, string newState) {
-		process.setState(newState);
-	}
+    // Update process state
+    void updateState(string newState) {
+        state = newState;
+    }
 
-	//method prints out process attributes
-	void printAttributes() {
-		cout << "Process ID: " << pid << endl;
-		cout << "Process priority: " << priority << endl;
-		cout << "Process state: " << state << endl;
-		cout << "Process memory requirement: " << memory_required << "MB" << endl;
-	}
+    // Calculate turnaround time
+    void calculateTurnaroundTime() {
+        turnaround_time = completion_time - arrival_time;
+    }
 
-	//getters and setters for process class
-	string getState() {
-		return state;
-	}
+    // Calculate waiting time
+    void calculateWaitingTime() {
+        waiting_time = turnaround_time - burst_time;
+    }
 
-	void setState(string state) {
-		this->state = state;
-	}
+    // Print process attributes
+    void printAttributes() {
+        cout << "Process ID: " << pid << endl;
+        cout << "Arrival Time: " << arrival_time << endl;
+        cout << "Burst Time: " << burst_time << endl;
+        cout << "Priority: " << priority << endl;
+        cout << "State: " << state << endl;
+        cout << "Completion Time: " << completion_time << endl;
+        cout << "Turnaround Time: " << turnaround_time << endl;
+        cout << "Waiting Time: " << waiting_time << endl;
+        cout << endl;
+    }
 
-	int getPID() {
-		return pid;
-	}
+    // Getter and setter functions
+    int getCompletionTime() { return completion_time; }
+    void setCompletionTime(int time) { completion_time = time; }
 
-	void setPID(int pid) {
-		this->pid = pid;
-	}
+    int getRemainingTime() { return remaining_time; }
+    void setRemainingTime(int time) { remaining_time = time; }
 
-	int getArrivalTime() {
-		return arrival_time;
-	}
+    int getWaitingTime() { return waiting_time; }
+    void setWaitingTime(int time) { waiting_time = time; }
 
-	void setArrivalTime(float arrival_time) {
-		this->arrival_time = arrival_time;
-	}
-
-	int getBurstTime() {
-		return burst_time;
-	}
-
-	void setBurstTime(float burst_time) {
-		this->burst_time = burst_time;
-	}
-
-	int getPriority() {
-		return priority;
-	}
-
-	void setPriority(int priority) {
-		this->priority = priority;
-	}
-
-	int getRemainingTime() {
-		return remaining_time;
-	}
-
-	void setRemainingTime(float remaining_time) {
-		this->remaining_time = remaining_time;
-	}
-
-	int getWaitingTime() {
-		return waiting_time;
-	}
-
-	void setWaitingTime(float waiting_time) {
-		this->waiting_time = waiting_time;
-	}
-
-	int getTurnAroundTime() {
-		return turnaround_time;
-	}
-
-	void setTurnAroundTime(float turnaround_time) {
-		this->turnaround_time = turnaround_time;
-	}
-
-	int getMemoryRequired() {
-		return memory_required;
-	}
-
-	void setMemoryRequired(int memory_required) {
-		this->memory_required = memory_required;
-	}
-
-	int getIO_Operations() {
-		return io_operations;
-	}
-
-	void setIO_Operations(bool io_operations) {
-		this->io_operations = io_operations;
-	}
-
+    int getTurnaroundTime() { return turnaround_time; }
+    void setTurnaroundTime(int time) { turnaround_time = time; }
 };
