@@ -1,4 +1,4 @@
-#include "Scheduling.h"
+#include "scheduling.h"
 #include <algorithm>
 
 // FCFS Scheduling Algorithm
