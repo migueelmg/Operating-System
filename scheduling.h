@@ -2,15 +2,15 @@
 #define SCHEDULING_H
 
 #include <vector>
-#include <iostream>
 #include "process.h"
 
-using namespace std;
+// First-Come, First-Served (FCFS) Scheduling
+void FCFS(std::vector<Process>& processes);
 
-// Function to execute FCFS Scheduling
-void FCFS(vector<Process>& processes);
+// Shortest Job First (Non-Preemptive) Scheduling
+void SJF_NonPreemptive(std::vector<Process>& processes);
 
-// Function to execute SJF Scheduling
-void SJF(vector<Process>& processes);
+// Shortest Job First (Preemptive / SRTF) Scheduling
+void SJF_Preemptive(std::vector<Process>& processes);
 
 #endif // SCHEDULING_H

@@ -20,7 +20,7 @@ void createProcess() {
     cin >> priority;
 
     //error check priority
-    while (priority != 1 and priority != 2 and priority != 3) {
+    while (priority != 1 && priority != 2 && priority != 3) {
         cout << "Incorrect priority input. Re-enter priority integer." << endl;
         cin >> priority;
     }

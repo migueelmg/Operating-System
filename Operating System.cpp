@@ -4,7 +4,7 @@
 #include "bootingSystem.h"
 #include "process.h"
 #include "createProcess.h"
-#include "scheduling.h"  // Make sure to include scheduling.h
+#include "scheduling.h"  // Updated scheduling header
 
 using namespace std;
 
@@ -48,11 +48,21 @@ int main() {
 
         if (algorithm == "FCFS") {
             cout << "Executing FCFS Scheduling..." << endl;
-            FCFS(processes);  // Call FCFS scheduler function
+            FCFS(processes);
         }
         else if (algorithm == "SJF") {
-            cout << "Executing SJF Scheduling..." << endl;
-            SJF(processes);  // Call SJF scheduler function
+            string type;
+            cout << "Choose type (preemptive/non-preemptive): ";
+            cin >> type;
+
+            if (type == "preemptive") {
+                cout << "Executing Preemptive SJF (SRTF) Scheduling..." << endl;
+                SJF_Preemptive(processes);
+            }
+            else {
+                cout << "Executing Non-Preemptive SJF Scheduling..." << endl;
+                SJF_NonPreemptive(processes);
+            }
         }
         else {
             cout << "Invalid algorithm choice. Please enter FCFS or SJF." << endl;

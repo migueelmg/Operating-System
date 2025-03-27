@@ -2,8 +2,6 @@
 #include <iostream>
 #include "auth.h"
 
-
-
 void bootingSystem() {
     std::cout << "Updating and verifying services...\n";
     std::cout << "10\n";
@@ -18,7 +16,5 @@ void bootingSystem() {
     std::cout << "1\n";
     std::cout << "System Booted." << endl;
     authenticateUser();
-
-
 
 }
