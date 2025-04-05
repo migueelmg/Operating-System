@@ -24,6 +24,9 @@
     <ClCompile Include="process.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="virtual_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth.h">
@@ -39,6 +42,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="scheduling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="virtual_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

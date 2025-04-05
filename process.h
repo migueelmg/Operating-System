@@ -1,10 +1,17 @@
 #pragma once
+#include "constants.h"
 #include <string>
 #include <iostream>
 using namespace std;
 
-class Process {
+// Page Table Entry for virtual memory
+struct PageTableEntry {
+    bool valid = false;        // Is this page loaded into physical memory?
+    int frameNumber = -1;      // Frame number in physical memory
+    bool dirty = false;        // Optional for write-back (not used here)
+};
 
+class Process {
 public:
     int pid;
     int arrival_time;
@@ -15,7 +22,10 @@ public:
     int waiting_time;
     int turnaround_time;
     int io_operations;
-    int completion_time;  // Added completion time
+    int completion_time;
+
+    // Page table for virtual memory (fixed-size array)
+    PageTableEntry pageTable[NUM_VIRTUAL_PAGES];
 
     // Constructor for when user or system specifies attributes
     Process(int pid, int priority, int arrival_time, int burst_time) {
@@ -29,6 +39,17 @@ public:
         this->turnaround_time = 0;
         this->io_operations = 0;
         this->completion_time = 0;  // Initialize completion time
+
+        // Initialize the page table
+        for (int i = 0; i < NUM_PHYSICAL_FRAMES && i < NUM_VIRTUAL_PAGES; ++i) {
+            pageTable[i].valid = true;
+            pageTable[i].frameNumber = i;
+        }
+
+        for (int i = NUM_PHYSICAL_FRAMES; i < NUM_VIRTUAL_PAGES; ++i) {
+            pageTable[i].valid = false;
+            pageTable[i].frameNumber = -1;
+        }
     }
 
     // Update process state

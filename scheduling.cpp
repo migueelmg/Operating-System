@@ -1,11 +1,12 @@
+// scheduling.cpp (with virtual memory simulation during execution)
 #include "scheduling.h"
+#include "virtual_memory.h"
 #include <iostream>
 #include <queue>
 #include <algorithm>
 
 using namespace std;
 
-// Helper to print ready queue
 void printReadyQueue(const vector<Process*>& readyQueue) {
     cout << "Ready Queue: [";
     for (const auto& p : readyQueue) {
@@ -42,6 +43,18 @@ void FCFS(vector<Process>& processes) {
 
             p->state = "running";
             cout << "Time " << currentTime << ": P" << p->pid << " starts running.\n";
+
+            // Simulate memory access
+            int sampleVirtualAddress = 8192 + (p->pid * 4096);
+            int physicalAddress = translateAddress(*p, sampleVirtualAddress);
+            if (physicalAddress != -1) {
+                cout << "P" << p->pid << " accessed virtual address " << sampleVirtualAddress
+                    << " -> physical address " << physicalAddress << endl;
+            }
+            else {
+                cout << "P" << p->pid << " triggered a page fault at virtual address "
+                    << sampleVirtualAddress << endl;
+            }
 
             currentTime += p->burst_time;
             p->completion_time = currentTime;
@@ -93,9 +106,21 @@ void SJF_NonPreemptive(vector<Process>& processes) {
             Process* p = *it;
             readyQueue.erase(it);
 
+            p->state = "running";
             cout << "Time " << currentTime << ": P" << p->pid << " starts running.\n";
 
-            p->state = "running";
+            // Simulate memory access
+            int sampleVirtualAddress = 8192 + (p->pid * 4096);
+            int physicalAddress = translateAddress(*p, sampleVirtualAddress);
+            if (physicalAddress != -1) {
+                cout << "P" << p->pid << " accessed virtual address " << sampleVirtualAddress
+                    << " -> physical address " << physicalAddress << endl;
+            }
+            else {
+                cout << "P" << p->pid << " triggered a page fault at virtual address "
+                    << sampleVirtualAddress << endl;
+            }
+
             currentTime += p->burst_time;
             p->completion_time = currentTime;
             p->calculateTurnaroundTime();
@@ -165,6 +190,19 @@ void SJF_Preemptive(vector<Process>& processes) {
             }
 
             current->state = "running";
+
+            // Simulate memory access
+            int sampleVirtualAddress = 8192 + (current->pid * 4096);
+            int physicalAddress = translateAddress(*current, sampleVirtualAddress);
+            if (physicalAddress != -1) {
+                cout << "P" << current->pid << " accessed virtual address " << sampleVirtualAddress
+                    << " -> physical address " << physicalAddress << endl;
+            }
+            else {
+                cout << "P" << current->pid << " triggered a page fault at virtual address "
+                    << sampleVirtualAddress << endl;
+            }
+
             current->remaining_time--;
             currentTime++;
 
