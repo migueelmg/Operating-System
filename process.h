@@ -27,30 +27,26 @@ public:
     // Page table for virtual memory (fixed-size array)
     PageTableEntry pageTable[NUM_VIRTUAL_PAGES];
 
-    // Constructor for when user or system specifies attributes
+    // Constructor
     Process(int pid, int priority, int arrival_time, int burst_time) {
         this->pid = pid;
         this->priority = priority;
         this->arrival_time = arrival_time;
         this->burst_time = burst_time;
-        this->remaining_time = burst_time; // Initialize remaining time to burst time
-        this->state = "not started";       // Default state
+        this->remaining_time = burst_time;
+        this->state = "not started";
         this->waiting_time = 0;
         this->turnaround_time = 0;
         this->io_operations = 0;
-        this->completion_time = 0;  // Initialize completion time
+        this->completion_time = 0;
 
-        // Initialize the page table
-        for (int i = 0; i < NUM_PHYSICAL_FRAMES && i < NUM_VIRTUAL_PAGES; ++i) {
-            pageTable[i].valid = true;
-            pageTable[i].frameNumber = i;
-        }
-
-        for (int i = NUM_PHYSICAL_FRAMES; i < NUM_VIRTUAL_PAGES; ++i) {
+        // Do NOT pre-allocate any pages
+        for (int i = 0; i < NUM_VIRTUAL_PAGES; ++i) {
             pageTable[i].valid = false;
             pageTable[i].frameNumber = -1;
         }
     }
+
 
     // Update process state
     void updateState(string newState) {

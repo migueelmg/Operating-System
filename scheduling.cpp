@@ -1,4 +1,4 @@
-// scheduling.cpp (with virtual memory simulation during execution)
+// scheduling.cpp (with virtual memory simulation and page table printing)
 #include "scheduling.h"
 #include "virtual_memory.h"
 #include <iostream>
@@ -44,8 +44,9 @@ void FCFS(vector<Process>& processes) {
             p->state = "running";
             cout << "Time " << currentTime << ": P" << p->pid << " starts running.\n";
 
-            // Simulate memory access
-            int sampleVirtualAddress = 8192 + (p->pid * 4096);
+            // Simulate memory access with single page
+            int virtualPage = p->pid % NUM_VIRTUAL_PAGES;
+            int sampleVirtualAddress = virtualPage * PAGE_SIZE;
             int physicalAddress = translateAddress(*p, sampleVirtualAddress);
             if (physicalAddress != -1) {
                 cout << "P" << p->pid << " accessed virtual address " << sampleVirtualAddress
@@ -62,6 +63,7 @@ void FCFS(vector<Process>& processes) {
             p->calculateWaitingTime();
             p->state = "finished";
             cout << "Time " << currentTime << ": P" << p->pid << " finishes.\n";
+            printPageTable(*p);
             completed++;
         }
         else {
@@ -109,8 +111,8 @@ void SJF_NonPreemptive(vector<Process>& processes) {
             p->state = "running";
             cout << "Time " << currentTime << ": P" << p->pid << " starts running.\n";
 
-            // Simulate memory access
-            int sampleVirtualAddress = 8192 + (p->pid * 4096);
+            int virtualPage = p->pid % NUM_VIRTUAL_PAGES;
+            int sampleVirtualAddress = virtualPage * PAGE_SIZE;
             int physicalAddress = translateAddress(*p, sampleVirtualAddress);
             if (physicalAddress != -1) {
                 cout << "P" << p->pid << " accessed virtual address " << sampleVirtualAddress
@@ -128,6 +130,7 @@ void SJF_NonPreemptive(vector<Process>& processes) {
             p->state = "finished";
 
             cout << "Time " << currentTime << ": P" << p->pid << " finishes.\n";
+            printPageTable(*p);
             completed++;
         }
         else {
@@ -191,8 +194,8 @@ void SJF_Preemptive(vector<Process>& processes) {
 
             current->state = "running";
 
-            // Simulate memory access
-            int sampleVirtualAddress = 8192 + (current->pid * 4096);
+            int virtualPage = current->pid % NUM_VIRTUAL_PAGES;
+            int sampleVirtualAddress = virtualPage * PAGE_SIZE;
             int physicalAddress = translateAddress(*current, sampleVirtualAddress);
             if (physicalAddress != -1) {
                 cout << "P" << current->pid << " accessed virtual address " << sampleVirtualAddress
@@ -212,6 +215,7 @@ void SJF_Preemptive(vector<Process>& processes) {
                 current->calculateWaitingTime();
                 current->state = "finished";
                 cout << "Time " << currentTime << ": P" << current->pid << " finishes.\n";
+                printPageTable(*current);
                 completed++;
                 current = nullptr;
             }

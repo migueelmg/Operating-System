@@ -6,14 +6,13 @@
 #include "createProcess.h"
 #include "scheduling.h"
 #include "constants.h"
-#include "virtual_memory.h" // ? Added for address translation
+#include "virtual_memory.h" 
 
 using namespace std;
 
 int main() {
     bootingSystem();
 
-    // Prompt user to start or shut down
     string input;
     cout << "To start initiating processes, enter 'start'. To shut down system, enter 'stop': ";
     cin >> input;
@@ -25,7 +24,6 @@ int main() {
 
         vector<Process> processes;
 
-        // Gather process data from user
         for (int i = 0; i < countOfProcesses; i++) {
             int pid, arrival_time, burst_time, priority;
             cout << "Enter PID for Process " << i + 1 << ": ";
@@ -37,28 +35,11 @@ int main() {
             cout << "Enter Priority for Process " << i + 1 << ": ";
             cin >> priority;
 
-            // Create and initialize process
             Process p(pid, priority, arrival_time, burst_time);
             p.state = "new";
-
-            // ? Virtual memory test: try translating a sample virtual address
-            int testVirtualAddr = 8192; // Page 2
-            int translated = translateAddress(p, testVirtualAddr);
-
-            if (translated != -1) {
-                cout << "Virtual address " << testVirtualAddr
-                    << " translated to physical address "
-                    << translated << " for PID " << p.pid << endl;
-            }
-            else {
-                cout << "Virtual address " << testVirtualAddr
-                    << " could not be translated for PID " << p.pid << endl;
-            }
-
             processes.push_back(p);
         }
 
-        // Select scheduling algorithm
         string algorithm;
         cout << "Choose scheduling algorithm (FCFS/SJF): ";
         cin >> algorithm;
